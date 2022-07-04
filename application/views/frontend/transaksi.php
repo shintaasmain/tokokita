@@ -35,7 +35,8 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-md">
+                    <table class="table table-striped table-md"  id="table-1">
+                      <thead>
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
@@ -44,7 +45,8 @@
                         <th>Status Order</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
+                    </thead>
+                    <tbody>
                     <?php 
                     $i=1;
                     foreach ($order as $O): ?> 
@@ -58,6 +60,7 @@
                       </tr>
                       <?php endforeach ; ?>
                     </table>
+                    </tbody>
                 </div>
                 </div>
                 <div class="card-footer text-right">

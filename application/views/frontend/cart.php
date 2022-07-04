@@ -4,10 +4,11 @@
                   <div class="card-header">
                     <h4>Data Keranjang Belanja</h4>
                   </div>
-                  <div class="card-body p-0">
+                  <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-striped table-md">
-                        <tr>
+                      <table class="table table-striped table-md" id="table-1">
+                      <thead>
+                      <tr>
                           <th>No</th>
                           <th>Nama Produk</th>
                           <th>Gambar</th>
@@ -16,6 +17,8 @@
                           <th>Sub Total</th>
                           <th>Aksi</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <?php 
                             $total = 0;
                             $i = 1;
@@ -41,6 +44,7 @@
                             <th></th>
                             <th><a href="<?php echo site_url('frontend/selesai_belanja/');?>" class="btn btn-success">Selesai Belanja</a></th>
                         </tr>
+                        </tbody>
                     </table>
                     </div>
                 </div>

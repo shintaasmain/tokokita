@@ -48,7 +48,8 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-md">
+                    <table class="table table-striped table-md" id="table-1">
+                      <thead>
                     <tr>
                         <th>Nama Toko</th>
                         <th>Deskripsi</th>
@@ -56,7 +57,8 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
+                    </thead>
+                    <tbody>
                     <?php foreach($toko as $toko): ?>
                           <tr>
                           <td><?php echo $toko->namaToko;?></td>
@@ -72,6 +74,7 @@
                         <td><a href=" <?php echo site_url('frontend/getidToko/'.$toko->idToko);?>" class="btn btn-primary">Detail</a></td>
                       </tr>
                       <?php endforeach ; ?>
+                      </tbody>
                     </table>
                 </div>
                 </div>
