@@ -266,6 +266,7 @@
               </li>
               <li class="<?php echo $this->uri->segment(1) == 'member' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo site_url('member');?>" ><i class="fa fa-user"></i><span>Member</span></a></li>
               <li class="<?php echo $this->uri->segment(1) == 'toko' ? 'active' : ''; ?>"><a class="nav-link" href="#"><i class="fas fa-store"></i> <span>Toko</span></a></li>
+              <li class="<?php echo $this->uri->segment(1) == 'aduan' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo site_url('aduan');?>"><i class="fas fa-store"></i> <span>Aduan</span></a></li>
               
         </aside>
       </div>
