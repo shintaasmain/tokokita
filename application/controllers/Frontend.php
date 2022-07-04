@@ -81,7 +81,11 @@ class Frontend extends CI_Controller {
 
 		$data['kategori'] = $this->Mfrontend->get_all_data('tbl_kategori')->result();
 		$data['toko'] = $this->Mfrontend->get_all_data('tbl_toko')->result();
+		$data['total_toko'] = $this->Mfrontend->jumlah_toko()->result();
+		$data['total_member'] = $this->Mfrontend->jumlah_member()->result();
+		$data['total_kurir'] = $this->Mfrontend->jumlah_kurir()->result();
 		$this->template->load('layout_frontend', 'frontend/tentangkami', $data);
+
 	}
 
 	// MEMBER
