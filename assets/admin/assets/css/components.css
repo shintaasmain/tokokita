@@ -625,7 +625,7 @@ tr:first-child > td > .fc-day-grid-event {
 
 /* 1.17 Profile */
 .profile-widget {
-  margin-top: 35px; }
+  margin-top: 0; }
   .profile-widget .profile-widget-picture {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
     float: left;

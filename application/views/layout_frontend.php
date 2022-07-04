@@ -34,7 +34,7 @@
           <ul class="navbar-nav">
             <li class="nav-item active"><a href="<?php echo site_url('home/');?>" class="nav-link">Beranda</a></li>
             <li class="nav-item active"><a href="<?php echo site_url('frontend/keranjang');?>" class="nav-link">Keranjang</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Tentang Tokokita</a></li>
+            <li class="nav-item"><a href="<?php echo site_url('frontend/tentangkami');?>" class="nav-link">Tentang Tokokita</a></li>
             <!-- <li class="nav-item"><a href="#" class="nav-link">Cara Belanja</a></li> -->
             <li class="nav-item"><a href="#" class="nav-link">Hubungi Kami</a></li>
           </ul>
