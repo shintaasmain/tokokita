@@ -146,6 +146,36 @@
 													class="btn btn-lg btn-success">Terima Pembayaran</a>
 											</div>
 
+
+											<div class="col-12 text-center mt-4">
+
+												<a href="<?php echo site_url('frontend/tolakPesanan/'.$p->idOrder.'/'.$toko->idToko);?>"
+													class="btn btn-lg btn-danger">Tolak Pesanan</a>
+											</div>
+
+											<!-- DIBATALKAN -->
+											<?php } else if($p -> statusOrder == 'Dibatalkan') { ?>
+											<!-- Foto Bukti Tf -->
+											<div class="mb-2 text-muted text-center">Click Bukti Bayar !</div>
+											<div class="chocolat-parent">
+
+												<a href="<?= base_url(); ?>fotoBuktiBayar/<?= $p->fotoBuktiBayar; ?>"
+													class="chocolat-image" title="Gambar Produk">
+													<div data-crop-image="220">
+														<img alt="image"
+															src="<?= base_url(); ?>fotoBuktiBayar/<?= $p->fotoBuktiBayar; ?>"
+															class="img-fluid">
+													</div>
+												</a>
+											</div>
+											
+											<!--Status Dibatalkan -->
+											<div class="col-12 text-center mt-4">
+
+												<a href="#"
+													class="btn btn-lg btn-dark">Dibatalkan</a>
+											</div>
+
 											<?php } else if($p -> statusOrder == 'Barang Diproses') { ?>
 											<!-- Foto Bukti Tf -->
 											<div class="mb-2 text-muted text-center">Click Bukti Bayar !</div>

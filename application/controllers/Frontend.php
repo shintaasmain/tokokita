@@ -539,6 +539,17 @@ class Frontend extends CI_Controller {
 			$this->template->load('layout_frontend', 'frontend/detail_transaksi', $data);
 	}
 
+	public function batalkanTransaksi($id, $idToko)
+	{
+			if(empty($this->session->userdata('username'))){
+				redirect('home');
+			}
+			$where = array('idOrder' => $id);
+			$this->Mfrontend->delete($where,'tbl_order');
+			redirect('frontend/transaksi/'.$idToko);
+	}
+
+
 	// PESANAN
 	public function pesanan($id)
 	{
@@ -554,10 +565,12 @@ class Frontend extends CI_Controller {
 
 	public function detailPesanan($idOrder, $idToko)
 	{
+			$dataWhere = array('idToko'=>$idToko);
+			$data['toko'] = $this->Mfrontend->get_by_id('tbl_toko', $dataWhere)->row_object();
 			$data['pesanan'] = $this->Mfrontend->getDetailPesanan($idOrder, $idToko)->result();
 			$data['bukti_bayar'] = $this->Mfrontend->getBuktiBayar($idOrder, $idToko)->result();
 			$data['kategori'] = $this->Mfrontend->get_all_data('tbl_kategori')->result();
-			$data['toko'] = $this->Mfrontend->get_all_data('tbl_toko')->row_object();
+			//$data['toko'] = $this->Mfrontend->get_all_data('tbl_toko')->row_object();
 			$this->template->load('layout_frontend', 'frontend/detail_pesanan', $data);
 	}
 
@@ -573,6 +586,17 @@ class Frontend extends CI_Controller {
 		$this->Mfrontend->updateStatusOrder($id, $data);
 		$url = $_SERVER['HTTP_REFERER'];
 		redirect($url);
+	}
+
+	public function tolakPesanan($id, $idKonsumen)
+	{
+			if(empty($this->session->userdata('username'))){
+				redirect('home');
+			}
+			var_dump($idKonsumen);
+			$data = array('statusOrder' => 'Dibatalkan');
+			$this->Mfrontend->update('tbl_order', $data, 'idOrder',$id);
+			redirect('frontend/pesanan/'.$idKonsumen);
 	}
 
 	public function kirimPesanan($id)
@@ -602,6 +626,7 @@ class Frontend extends CI_Controller {
 		$url = $_SERVER['HTTP_REFERER'];
 		redirect($url);
 	}
+
 
 	// Upload Bukti Bayar
 	public function uploadPembayaran($id)

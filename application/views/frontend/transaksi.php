@@ -59,6 +59,10 @@
 													<td>
 														<div class="badge badge-pill badge-danger mb-1 ">Belum Bayar</div>
 													</td>
+												<?php } else if ($O -> statusOrder == 'Dibatalkan'){ ?>
+													<td>
+														<div class="badge badge-pill badge-dark mb-1 ">Dibatalkan</div>
+													</td>
 												<?php } else if($O -> statusOrder == 'Sudah Bayar') { ?>
 													<td>
 														<div class="badge badge-pill badge-info mb-1 ">Sudah Bayar</div>

@@ -90,7 +90,7 @@
               Don't have an account? <a href="auth-register.html">Create One</a>
             </div>
             <div class="simple-footer">
-               Copyright &copy; 2022 <div class="bullet"></div> By Shinta Asma'in</a>
+               Copyright &copy; 2022 <div class="bullet"></div> By TOKOKITA</a>
             </div>
           </div>
         </div>

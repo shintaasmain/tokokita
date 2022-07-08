@@ -149,7 +149,7 @@
       <?= $contents ?> 
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2022 <div class="bullet"></div> By Shinta Asma'in</a>
+          Copyright &copy; 2022 <div class="bullet"></div> By TOKOKITA</a>
         </div>
         <div class="footer-right">
           2.3.0

@@ -138,13 +138,24 @@
 												<div class="col-md-12 text-center mt-4">
 													<button href="" class="btn btn-lg btn-warning">Upload</button>
 												</div>
-												
 												</form>
-												
+
+												<div class="col-md-12 text-center mt-4">
+													<a href="<?= base_url('frontend/batalkanTransaksi/'.$item->idOrder.'/'.$this->session->userdata['idKonsumen']); ?>" class="btn btn-lg btn-danger">Batalkan Pesanan</a>
+												</div>
 												
 											</div>
 
-											<?php } else if($item -> statusOrder == 'Sudah Bayar') { ?>
+											<?php } else if($item -> statusOrder == 'Dibatalkan') { ?>
+											<em class="text-danger">*Pesanan Anda dibatalkan oleh Penjual dikarenakan bukti bayar tidak valid</em>
+												
+											<!-- Button Acc -->
+											<div class="col-12 text-center">
+												<a href="#"
+													class="btn btn-lg btn-dark mt-4">Dibatalkan</a>
+											</div>
+
+											<?php } else if($item -> statusOrder == 'Dibatalkan') { ?>
 											<!-- Foto Bukti Tf -->
 											<div class="mb-2 text-muted text-center">Click Bukti Bayar !</div>
 											<div class="chocolat-parent">
