@@ -52,30 +52,30 @@ class Frontend extends CI_Controller {
 	// UPDATE FOTO PROFIL
 	private function updateFotoProfil($idKonsumen)
 	{
-		$config['upload_path']  		= './fotoProfil/';
-		$config['allowed_types']  		= 'jpg|jpeg|png|gif';  
-		$config['max_size']             = '10000';
-		$config['max_width']            = '10000';
-		$config['max_height']           = '10000';
+			$config['upload_path']  		= './fotoProfil/';
+			$config['allowed_types']  		= 'jpg|jpeg|png|gif';  
+			$config['max_size']             = '10000';
+			$config['max_width']            = '10000';
+			$config['max_height']           = '10000';
 
-		$this->load->library('upload',$config);
-		//var_dump($this->upload->do_upload('foto'));
-		if (!empty($_FILES['foto']['name'])){
-			if($this->upload->do_upload('foto')){
-				$foto= $this->upload->data();
+			$this->load->library('upload',$config);
+			//var_dump($this->upload->do_upload('foto'));
+			if (!empty($_FILES['foto']['name'])){
+				if($this->upload->do_upload('foto')){
+					$foto= $this->upload->data();
 
-				// replace foto lama
-				$item = $this->db->where('idKonsumen', $idKonsumen)->get('tbl_member')->row();
-				$target_file = './fotoProfil/'.$item->foto;
-				unlink($target_file);
+					// replace foto lama
+					$item = $this->db->where('idKonsumen', $idKonsumen)->get('tbl_member')->row();
+					$target_file = './fotoProfil/'.$item->foto;
+					unlink($target_file);
 
-				$data['foto'] = $foto['file_name'];
-				$this->db->where('idKonsumen', $idKonsumen);
-				$this->db->update('tbl_member', $data);
+					$data['foto'] = $foto['file_name'];
+					$this->db->where('idKonsumen', $idKonsumen);
+					$this->db->update('tbl_member', $data);
+			}
+			
 		}
-		
 	}
-}
 	//TENTANGKAMI
 	public function tentangkami(){
 
@@ -594,6 +594,49 @@ class Frontend extends CI_Controller {
 		$this->Mfrontend->updateStatusOrder($id, $data);
 		$url = $_SERVER['HTTP_REFERER'];
 		redirect($url);
+	}
+
+	// Upload Bukti Bayar
+	public function uploadPembayaran($id)
+	{
+		if ($_FILES != null){
+			$this->updatepembayaran($id);
+		}
+	}
+
+	public function updatepembayaran($id)
+	{
+		$config['upload_path']  		= './fotoBuktiBayar/';
+			$config['allowed_types']  		= 'jpg|jpeg|png';  
+			$config['max_size']             = '10000';
+			$config['max_width']            = '10000';
+			$config['max_height']           = '10000';
+
+			$this->load->library('upload',$config);
+			//var_dump($this->upload->do_upload('foto'));
+			if (!empty($_FILES['fotoBuktiBayar']['name'])){
+				if($this->upload->do_upload('fotoBuktiBayar')){
+					$fotoBuktiBayar= $this->upload->data();
+					$logo = $fotoBuktiBayar['file_name'];
+
+					// replace foto lama
+					$item = $this->db->where('idOrder', $id)->get('tbl_order')->row();
+
+					if($item->fotoBuktiBayar != "placeholder_image.png"){
+					$target_file = './fotoBuktiBayar/'.$item->fotoBuktiBayar;
+					unlink($target_file);
+				}
+					$data = array(
+						'fotoBuktiBayar'=>  $fotoBuktiBayar['file_name'],
+						'statusOrder'	=> "Sudah Bayar",
+					);
+
+					$this->db->where('idOrder', $id);
+					$this->db->update('tbl_order', $data);
+					$url = $_SERVER['HTTP_REFERER'];
+					redirect($url);
+				}
+			}
 	}
 
 }

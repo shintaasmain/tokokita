@@ -126,17 +126,17 @@
 											<?php if ($item -> statusOrder == 'Belum Bayar'){ ?>
 											<div class="col-12">
 											<em class="text-danger">*Silahkan Upload Bukti Pembayaran dalam format : .png / .jpg / .jpeg</em>
-												<form method="POST" enctype="multipart/form-data" action="<?= base_url('frontend/editProduk'); ?>" class="needs-validation mt-3" novalidate="">
+												<form method="POST" enctype="multipart/form-data" action="<?= base_url('frontend/uploadPembayaran/'.$item->idOrder); ?>" class="needs-validation mt-3" novalidate="">
 													<div class="form-group-upload">
 													<div class="custom-file">
 														<label class="custom-file-label" for="file-upload">pilih file...</label>
-														<input type="file" class="custom-file-input" id="file-upload" name="berkas"
+														<input type="file" class="custom-file-input" id="file-upload" name="fotoBuktiBayar"
 															value="">
 														
 													</div>
 												</div>
 												<div class="col-md-12 text-center mt-4">
-													<a href="" class="btn btn-lg btn-warning">Upload</a>
+													<button href="" class="btn btn-lg btn-warning">Upload</button>
 												</div>
 												
 												</form>
@@ -161,8 +161,8 @@
 
 											<!-- Button Acc -->
 											<div class="col-12 text-center">
-												<a href="<?php echo site_url('frontend/terimaPembayaran/'.$item->idOrder);?>"
-													class="btn btn-lg btn-success">Terima Pembayaran</a>
+												<a href="#"
+													class="btn btn-lg btn-success mt-4">Sudah Bayar</a>
 											</div>
 
 											<?php } else if($item -> statusOrder == 'Barang Diproses') { ?>
