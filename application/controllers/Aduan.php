@@ -7,9 +7,9 @@ class Aduan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Mcrud');
-		
 	}
 
+	// Admin
 	public function index()
 	{
 		if(empty($this->session->userdata('userName'))){
@@ -20,30 +20,22 @@ class Aduan extends CI_Controller {
 		
 	}
 
-    public function add(){
-        $this->template->load('layout_admin', 'admin/kurir/form_add');
-    }
+	// Member
+	public function tambah_aduan(){
+		$nama = $this->input->post('nama');
+		$email = $this->input->post('email');
+		$nohp = $this->input->post('nohp');
+		$pesanaduan = $this->input->post('pesanaduan');
+		$dataInsert = array(
+			'nama' =>$nama,
+			'email' =>$email,
+			'nohp' =>$nohp,
+			'pesanaduan' =>$pesanaduan
+		);
 
-	public function save(){
-		$namakurir = $this->input->post('namakurir');
-		$dataInsert = array('namakurir' => $namakurir);
-		$this->Mcrud->insert('tbl_kurir', $dataInsert);
-		redirect('kurir');
+		$this->Mcrud->insert('tbl_pengaduan', $dataInsert);
+		redirect('frontend/tentangkami');
 	}
 
-	public function getid_aktif($id){
-		$statusAktif = 'Y';
-		$dataUpdate = array ('statusAktif' =>$statusAktif);
-		$this->Mcrud->update('tbl_member', $dataUpdate, 'idKonsumen',$id);
-		redirect('member');
 
-	}
-	public function getid_tidakaktif($id){
-		$statusAktif = 'N';
-		$dataUpdate = array ('statusAktif' =>$statusAktif);
-		$this->Mcrud->update('tbl_member', $dataUpdate, 'idKonsumen',$id);
-		redirect('member');
-
-	}
-	
 }

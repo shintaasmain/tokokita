@@ -32,6 +32,7 @@ class Frontend extends CI_Controller {
 		$email = $this->input->post('email');
 		$tlpn = $this->input->post('tlpn');
 		$alamat = $this->input->post('alamat');
+		$foto = $this->input->post('foto');
 		$dataUpdate = array(
 			'idKonsumen' => $idKonsumen,
 			'idKota' => $idKota,
@@ -39,9 +40,52 @@ class Frontend extends CI_Controller {
 			'email' => $email,
 			'tlpn' => $tlpn,
 			'alamat' => $alamat,
+			'foto' => $foto,
 		);
 		$this->Mfrontend->update('tbl_member', $dataUpdate, 'idKonsumen',$idKonsumen);
+		if ($_FILES != null){
+			$this->updateFotoProfil($idKonsumen);
+		}
 		redirect('frontend/ubah_profil/'.$idKonsumen);
+	}
+
+	// UPDATE FOTO PROFIL
+	private function updateFotoProfil($idKonsumen)
+	{
+		$config['upload_path']  		= './fotoProfil/';
+		$config['allowed_types']  		= 'jpg|jpeg|png|gif';  
+		$config['max_size']             = '10000';
+		$config['max_width']            = '10000';
+		$config['max_height']           = '10000';
+
+		$this->load->library('upload',$config);
+		//var_dump($this->upload->do_upload('foto'));
+		if (!empty($_FILES['foto']['name'])){
+			if($this->upload->do_upload('foto')){
+				$foto= $this->upload->data();
+
+				// replace foto lama
+				$item = $this->db->where('idKonsumen', $idKonsumen)->get('tbl_member')->row();
+				$target_file = './fotoProfil/'.$item->foto;
+				unlink($target_file);
+
+				$data['foto'] = $foto['file_name'];
+				$this->db->where('idKonsumen', $idKonsumen);
+				$this->db->update('tbl_member', $data);
+		}
+		
+	}
+}
+	//TENTANGKAMI
+	public function tentangkami(){
+
+		$data['kategori'] = $this->Mfrontend->get_all_data('tbl_kategori')->result();
+		$data['toko'] = $this->Mfrontend->get_all_data('tbl_toko')->result();
+		$data['total_toko'] = $this->Mfrontend->jumlah_toko()->result();
+		$data['total_member'] = $this->Mfrontend->jumlah_member()->result();
+		$data['total_kurir'] = $this->Mfrontend->jumlah_kurir()->result();
+		$this->template->load('layout_frontend', 'frontend/tentangkami', $data);
+
 	}
 
 	// MEMBER

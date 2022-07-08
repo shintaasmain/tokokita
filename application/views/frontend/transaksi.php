@@ -20,7 +20,7 @@
                       <li class="nav-item"><a href="<?php echo site_url('frontend/transaksi/'.$this->session->userdata('idKonsumen'));?>" class="active nav-link">Transaksi</a></li>
                     <li class="nav-item"><a href="<?php echo site_url('frontend/riwayat_transaksi');?>" class="nav-link">Riwayat Transaksi</a></li>
                       <li class="nav-item"><a href="<?= site_url('frontend/toko/'.$this->session->userdata('idKonsumen'));?>" class=" nav-link">Toko</a></li>
-                      <li class="nav-item"><a href="<?php echo site_url('frontend/ubah_profil/'.$this->session->userdata('idKonsumen'));?>" class="nav-link">Ubah Profil</a></li>
+                      <li class="nav-item"><a href="<?php echo site_url('frontend/ubah_profil/'.$this->session->userdata('idKonsumen'));?>" class="nav-link">Profil</a></li>
                       <li class="nav-item"><a href="#!" onclick="logoutConfirm('<?php echo site_url('home/logout');?>')" class="nav-link">Logout</a></li>
                     </ul>
                   </div>
