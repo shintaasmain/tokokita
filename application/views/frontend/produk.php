@@ -49,14 +49,16 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-md">
+                    <table class="table table-striped table-md" id="table-1">
+                      <thead>
                     <tr>
                         <th>Nama Produk</th>
                         <th>Harga</th>
                         <th>Stok</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
+                    </thead>
+                    <tbody>
                     <?php foreach($produk as $p): ?>
                           <tr>
                           <td><?php echo $p->namaProduk;?></td>
@@ -66,6 +68,7 @@
                          <a onclick="deleteConfirm('<?php echo site_url('frontend/hapusProduk/'.$p->idProduk.'/'.$p->idToko);?>')" href="#!" class="btn btn-danger" >Hapus</a></td>
                      </tr>
                       <?php endforeach ; ?>
+                      </tbody>
                     </table>
                 </div>
                 </div>

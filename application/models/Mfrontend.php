@@ -279,6 +279,31 @@ class Mfrontend extends CI_Model{
         
         return $this->db->get();
     }
+
+    //Jumlah Toko bagian tentangkami
+	public function jumlah_toko() {
+		$this->db->select('COUNT(idToko) as total_toko');
+		$this->db->from('tbl_toko');
+
+		$hasil = $this->db->get();
+		return $hasil;
+	}
+	//Jumlah Member bagian tentangkami
+	public function jumlah_member() {
+		$this->db->select('COUNT(idKonsumen) as total_member');
+		$this->db->from('tbl_member');
+
+		$hasil = $this->db->get();
+		return $hasil;
+	}
+	//Jumlah Kurir bagian tentangkami
+	public function jumlah_kurir() {
+		$this->db->select('COUNT(idKurir) as total_kurir');
+		$this->db->from('tbl_kurir');
+
+		$hasil = $this->db->get();
+		return $hasil;
+	}
 }
 
 ?>

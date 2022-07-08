@@ -22,7 +22,7 @@
                       <li class="nav-item"><a href="<?php echo site_url('frontend/transaksi/'.$this->session->userdata('idKonsumen'));?>" class="nav-link">Transaksi</a></li>
                     <li class="nav-item"><a href="<?php echo site_url('frontend/riwayat_transaksi');?>" class="nav-link">Riwayat Transaksi</a></li>
                       <li class="nav-item"><a href="#" class="active nav-link">Toko</a></li>
-                      <li class="nav-item"><a href="<?php echo site_url('frontend/ubah_profil/'.$this->session->userdata('idKonsumen'));?>" class="nav-link">Ubah Profil</a></li>
+                      <li class="nav-item"><a href="<?php echo site_url('frontend/ubah_profil/'.$this->session->userdata('idKonsumen'));?>" class="nav-link">Profil</a></li>
                       <li class="nav-item"><a href="#!" onclick="logoutConfirm('<?php echo site_url('home/logout');?>')" class="nav-link">Logout</a></li>
                     </ul>
                   </div>
@@ -48,7 +48,8 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-md">
+                    <table class="table table-striped table-md" id="table-1">
+                      <thead>
                     <tr>
                         <th>Nama Toko</th>
                         <th>Deskripsi</th>
@@ -56,7 +57,8 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
+                    </thead>
+                    <tbody>
                     <?php foreach($toko as $toko): ?>
                           <tr>
                           <td><?php echo $toko->namaToko;?></td>
@@ -72,6 +74,7 @@
                         <td><a href=" <?php echo site_url('frontend/getidToko/'.$toko->idToko);?>" class="btn btn-primary">Detail</a></td>
                       </tr>
                       <?php endforeach ; ?>
+                      </tbody>
                     </table>
                 </div>
                 </div>

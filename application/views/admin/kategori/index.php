@@ -21,12 +21,15 @@
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-bordered table-md">
-                        <tr>
+                      <table class="table table-bordered table-md" id="table-1">
+                        <thead>
+                        <tr>  
                           <th>#</th>
                           <th>Nama Kategori</th>
                           <th>Action</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <?php foreach($kategori as $item){?>
                           <tr>
                           <td><?php echo $item->idKat;?></td>
@@ -36,6 +39,7 @@
                           <a onclick="deleteConfirm('<?php echo site_url('kategori/hapus/'.$item->idKat);?>')" href="#!" class="btn btn-danger" >Hapus</a></td>
                         </tr>
                         <?php } ?>
+                        </tbody>
                       </table>
                     </div>
                   </div>

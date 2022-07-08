@@ -25,8 +25,8 @@
                           <th>#</th>
                           <th>Username</th>
                           <th>Nama Konsumen</th>
-                          <th>Alamat</th>
-                          <th>Email</th>
+                          <th width="15%">Alamat</th>
+                          <th width="15%">Email</th>
                           <th>Telepon</th>
                           <th>Status</th>
                           <th>Action</th>
