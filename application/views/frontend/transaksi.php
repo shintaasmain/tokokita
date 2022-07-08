@@ -38,7 +38,6 @@
                     <table class="table table-striped table-md">
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
                         <th>Nama Toko</th>
                         <th>Tanggal Order</th>
                         <th>Status Order</th>
@@ -50,11 +49,46 @@
                     foreach ($order as $O): ?> 
                           <tr>
                           <td><?= $i++;?></td>
-                          <td><?php echo $O->namaKonsumen;?></td>
                           <td><?php echo $O->namaToko;?></td>
                           <td><?php echo $O->tglOrder;?></td>
-                          <td><?php echo $O->statusOrder;?></td>
-                        <td><a href="#" class="btn btn-primary">Detail</a></td>
+
+                          <!-- status -->
+												<?php if ($O -> statusOrder == 'Belum Bayar'){ ?>
+													<td>
+														<div class="badge badge-pill badge-danger mb-1 ">Belum Bayar</div>
+													</td>
+												<?php } else if($O -> statusOrder == 'Sudah Bayar') { ?>
+													<td>
+														<div class="badge badge-pill badge-info mb-1 ">Sudah Bayar</div>
+													</td>
+												<?php } else if($O -> statusOrder == 'Barang Diproses') { ?>
+													<td>
+														<div class="badge badge-pill badge-warning mb-1 ">Barang Diproses</div>
+													</td>
+												<?php } else if($O -> statusOrder == 'Dikirim') { ?>
+													<td>
+														<div class="badge badge-pill badge-primary mb-1 ">Dikirim</div>
+													</td>
+												<?php } else { ?>
+													<td>
+														<div class="badge badge-pill badge-success mb-1 ">Selesai</div>
+													</td>
+												<?php } ?>
+
+                          
+                        <td>
+                          <!-- detail button -->
+                          <a href="<?php echo site_url('frontend/detailTransaksi/'.$O->idOrder);?>" class="btn btn-primary mr-2">Detail</a>
+                      
+                          <!-- terima button -->
+                          <?php if ($O -> statusOrder == 'Dikirim'){ ?>
+													<a href="<?php echo site_url('frontend/terimaBarang/'.$O->idOrder);?>"
+														class="btn btn-success">Terima</a>
+												</td>
+												<?php } ?>
+                        </td>
+
+
                       </tr>
                       <?php endforeach ; ?>
                     </table>

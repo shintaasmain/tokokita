@@ -202,6 +202,83 @@ class Mfrontend extends CI_Model{
         return 0;
         }
     }
+
+    //PESANAN
+    public function getPesanan($id)
+    {
+        $where = $this->session->userdata('idKonsumen');
+        $this->db->select('*');
+        $this->db->from('tbl_order');
+        $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko'); 
+        $this->db->join('tbl_member','tbl_order.idKonsumen = tbl_member.idKonsumen');   
+		$this->db->join('tbl_detail_order','tbl_order.idOrder = tbl_detail_order.idOrder');  
+		$this->db->join('tbl_produk','tbl_detail_order.idProduk = tbl_produk.idProduk');  
+        $this->db->where('tbl_order.idToko',$id); 
+        $this->db->where('tbl_toko.idKonsumen', $where);
+        $this->db->group_by('tbl_order.idOrder');
+        return $this->db->get();
+    }
+
+    public function getDetailPesanan($idOrder , $idToko)
+    {
+        $where = $this->session->userdata('idKonsumen');
+        $this->db->select('*');
+        $this->db->from('tbl_order');
+        $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko');    
+		$this->db->join('tbl_detail_order','tbl_order.idOrder = tbl_detail_order.idOrder');  
+		$this->db->join('tbl_produk','tbl_detail_order.idProduk = tbl_produk.idProduk');  
+        $this->db->join('tbl_kategori','tbl_produk.idKat = tbl_kategori.idKat'); 
+        $this->db->where('tbl_order.idToko',$idToko); 
+        $this->db->where('tbl_order.idOrder',$idOrder); 
+        $this->db->where('tbl_toko.idKonsumen', $where);
+        
+        return $this->db->get();
+    }
+
+    public function getBuktiBayar($idOrder , $idToko)
+    {
+        $where = $this->session->userdata('idKonsumen');
+        $this->db->select('*');
+        $this->db->from('tbl_order');
+        $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko');    
+        $this->db->where('tbl_order.idToko',$idToko); 
+        $this->db->where('tbl_order.idOrder',$idOrder); 
+        $this->db->where('tbl_toko.idKonsumen', $where);
+        
+        return $this->db->get();
+    }
+
+    public function updateStatusOrder($id, $data){
+        $this->db->where('idOrder', $id);
+        $this->db->update('tbl_order', $data); 
+    }
+
+    public function getDetailTransaksi($idOrder)
+    {
+        $where = $this->session->userdata('idKonsumen');
+        $this->db->select('*');
+        $this->db->from('tbl_order');
+        $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko');    
+		$this->db->join('tbl_detail_order','tbl_order.idOrder = tbl_detail_order.idOrder');  
+		$this->db->join('tbl_produk','tbl_detail_order.idProduk = tbl_produk.idProduk');  
+		$this->db->join('tbl_kategori','tbl_produk.idKat = tbl_kategori.idKat');  
+        $this->db->where('tbl_order.idOrder',$idOrder); 
+        $this->db->where('tbl_toko.idKonsumen', $where);
+        
+        return $this->db->get();
+    }
+
+    public function getBuktiBayarTransaksi($idOrder)
+    {
+        $where = $this->session->userdata('idKonsumen');
+        $this->db->select('*');
+        $this->db->from('tbl_order');
+        $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko');
+        $this->db->where('tbl_order.idOrder',$idOrder); 
+        $this->db->where('tbl_toko.idKonsumen', $where);
+        
+        return $this->db->get();
+    }
 }
 
 ?>

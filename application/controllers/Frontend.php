@@ -239,8 +239,8 @@ class Frontend extends CI_Controller {
 	}
     
     // TAMBAH PRODUK BARU
-    public function tambah_produkbaru()
-    {
+   public function tambah_produkbaru()
+   {
             $config['upload_path']  		= './fotoProduk/';
             $config['allowed_types']  		= 'jpg|jpeg|png|gif';  
             $config['max_size']             = '10000';
@@ -277,7 +277,7 @@ class Frontend extends CI_Controller {
                     redirect('frontend/produk/'.$id);
                 // }
             }
-        }
+   }
 
 		//DETAIL PRODUK
 		public function getidProduk($idProduk, $idToko)
@@ -340,10 +340,10 @@ class Frontend extends CI_Controller {
 					$data['foto'] = $foto['file_name'];
 					$this->db->where('idProduk', $idProduk);
 					$this->db->update('tbl_produk', $data);
-			}
+				}
 			
+			}
 		}
-	}
 
 	public function hapusProduk($id, $idToko)
 	{
@@ -476,17 +476,80 @@ class Frontend extends CI_Controller {
 		$this->template->load('layout_frontend', 'frontend/transaksi', $data);
 	}
 	// DETAIL TRANSAKSI
-	public function detailOrder($id)
+	public function detailTransaksi($id)
 	{
 		if(empty($this->session->userdata('username'))){
 			redirect('home');
 		}
-		$dataWhere = array('idOrder'=>$id);
+			$data['transaksi'] = $this->Mfrontend->getDetailTransaksi($id)->result();
+			$data['bukti_bayar'] = $this->Mfrontend->getBuktiBayarTransaksi($id)->result();
+			$data['kategori'] = $this->Mfrontend->get_all_data('tbl_kategori')->result();
+			$data['toko'] = $this->Mfrontend->get_all_data('tbl_toko')->row_object();
+			$this->template->load('layout_frontend', 'frontend/detail_transaksi', $data);
+	}
+
+	// PESANAN
+	public function pesanan($id)
+	{
+		if(empty($this->session->userdata('username'))){
+			redirect('home');
+		}
+		$dataWhere = array('idToko'=>$id);
+		$data['toko'] = $this->Mfrontend->get_by_id('tbl_toko', $dataWhere)->row_object();
 		$data['kategori'] = $this->Mfrontend->get_all_data('tbl_kategori')->result();
-		$data['order']=$this->Mfrontend->getdata_order()->result();
-		$data['detailOrder']=$this->Mfrontend->getdata_detailOrder($id)->result();
-		var_dump($data['detailOrder']);
-		$this->template->load('layout_frontend', 'frontend/transaksi', $data);
+      $data['pesanan'] = $this->Mfrontend->getPesanan($id)->result();
+		$this->template->load('layout_frontend', 'frontend/list_pesanan', $data);
+	}
+
+	public function detailPesanan($idOrder, $idToko)
+	{
+			$data['pesanan'] = $this->Mfrontend->getDetailPesanan($idOrder, $idToko)->result();
+			$data['bukti_bayar'] = $this->Mfrontend->getBuktiBayar($idOrder, $idToko)->result();
+			$data['kategori'] = $this->Mfrontend->get_all_data('tbl_kategori')->result();
+			$data['toko'] = $this->Mfrontend->get_all_data('tbl_toko')->row_object();
+			$this->template->load('layout_frontend', 'frontend/detail_pesanan', $data);
+	}
+
+	public function terimaPembayaran($id)
+	{
+		if(empty($this->session->userdata('username'))){
+			redirect('home');
+		}
+		$data = [
+			'statusOrder' => 'Barang Diproses',
+		];
+		
+		$this->Mfrontend->updateStatusOrder($id, $data);
+		$url = $_SERVER['HTTP_REFERER'];
+		redirect($url);
+	}
+
+	public function kirimPesanan($id)
+	{
+		if(empty($this->session->userdata('username'))){
+			redirect('home');
+		}
+		$data = [
+			'statusOrder' => 'Dikirim',
+		];
+		
+		$this->Mfrontend->updateStatusOrder($id, $data);
+		$url = $_SERVER['HTTP_REFERER'];
+		redirect($url);
+	}
+
+	public function terimaBarang($id)
+	{
+		if(empty($this->session->userdata('username'))){
+			redirect('home');
+		}
+		$data = [
+			'statusOrder' => 'Selesai',
+		];
+		
+		$this->Mfrontend->updateStatusOrder($id, $data);
+		$url = $_SERVER['HTTP_REFERER'];
+		redirect($url);
 	}
 
 }

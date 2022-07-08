@@ -17,13 +17,17 @@
                     <h4>Menu Toko</h4>
                   </div>
                   <div class="card-body">
-                <ul class="nav nav-pills flex-column">
-                      <li class="nav-item"><a href="<?php echo site_url('frontend/getidToko/'.$toko->idToko);?>" class="nav-link">Beranda</a></li>
-                      <li class="nav-item"><a href="<?php echo site_url('frontend/produk/'.$toko->idToko);?>" class="nav-link">Produk</a></li>
-                    <li class="nav-item"><a href="<?php echo site_url('frontend/pesanan');?>" class="nav-link">Pesanan</a></li>
-                      <li class="nav-item"><a href="<?php echo site_url('frontend/laporan');?>" class="nav-link">Laporan</a></li>
-                      <li class="nav-item"><a href="#" class="active nav-link">Ubah Toko</a></li>
-                    </ul>
+                  <ul class="nav nav-pills flex-column">
+								<li class="nav-item"><a href="#" class=" nav-link">Beranda</a></li>
+								<li class="nav-item"><a href="<?php echo site_url('frontend/produk/'.$toko->idToko);?>"
+										class="nav-link ">Produk</a></li>
+								<li class="nav-item"><a href="<?php echo site_url('frontend/pesanan/'.$toko->idToko);?>"
+										class="nav-link">Pesanan</a></li>
+								<li class="nav-item"><a href="<?php echo site_url('frontend/laporan');?>" class="nav-link">Laporan</a>
+								</li>
+								<li class="nav-item"><a href="<?php echo site_url('frontend/ubah_toko/'.$toko->idToko);?>"
+										class="nav-link active">Ubah Toko</a></li>
+							</ul>
                   </div>
                 </div>
               </div>
