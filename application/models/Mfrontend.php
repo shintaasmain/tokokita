@@ -304,6 +304,71 @@ class Mfrontend extends CI_Model{
 		$hasil = $this->db->get();
 		return $hasil;
 	}
+
+    // Jumlah Pesanan Masuk
+	public function totalPesananMasuk($id) {
+		$where = $this->session->userdata('idKonsumen');
+		$this->db->select('COUNT(idOrder) as total_masuk');
+		$this->db->from('tbl_order');
+		$this->db->where('statusOrder', 'Belum Bayar');
+		$this->db->where('idToko', $id);
+        $this->db->where('idKonsumen', $where);
+
+		$hasil = $this->db->get();
+		return $hasil;
+	}
+
+    // Jumlah Pesanan Dibayar
+	public function totalPesananDibayar($id) {
+		$where = $this->session->userdata('idKonsumen');
+		$this->db->select('COUNT(idOrder) as total_dibayar');
+		$this->db->from('tbl_order');
+		$this->db->where('statusOrder', 'Sudah Bayar');
+		$this->db->where('idToko', $id);
+        $this->db->where('idKonsumen', $where);
+
+		$hasil = $this->db->get();
+		return $hasil;
+	}
+
+    // Jumlah Pesanan Diproses
+	public function totalPesananDiproses($id) {
+		$where = $this->session->userdata('idKonsumen');
+		$this->db->select('COUNT(idOrder) as total_diproses');
+		$this->db->from('tbl_order');
+		$this->db->where('statusOrder', 'Barang Diproses');
+		$this->db->where('idToko', $id);
+        $this->db->where('idKonsumen', $where);
+
+		$hasil = $this->db->get();
+		return $hasil;
+	}
+
+    // Jumlah Pesanan Dikirim
+	public function totalPesananDikirim($id) {
+		$where = $this->session->userdata('idKonsumen');
+		$this->db->select('COUNT(idOrder) as total_kirim');
+		$this->db->from('tbl_order');
+		$this->db->where('statusOrder', 'Dikirim');
+		$this->db->where('idToko', $id);
+        $this->db->where('idKonsumen', $where);
+
+		$hasil = $this->db->get();
+		return $hasil;
+	}
+
+    // Jumlah Pesanan Selesai
+	public function totalPesananSelesai($id) {
+		$where = $this->session->userdata('idKonsumen');
+		$this->db->select('COUNT(idOrder) as total_selesai');
+		$this->db->from('tbl_order');
+		$this->db->where('statusOrder', 'Selesai');
+		$this->db->where('idToko', $id);
+        $this->db->where('idKonsumen', $where);
+
+		$hasil = $this->db->get();
+		return $hasil;
+	}
 }
 
 ?>

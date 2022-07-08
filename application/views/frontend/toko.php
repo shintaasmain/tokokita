@@ -71,7 +71,7 @@
                                 <a href="#" class="badge badge-danger">Tidak Aktif</a><br>
                                 <?php endif ;?>
                           </td>
-                        <td><a href=" <?php echo site_url('frontend/getidToko/'.$toko->idToko);?>" class="btn btn-primary">Detail</a></td>
+                        <td><a href="<?php echo site_url('frontend/getidToko/'.$toko->idToko);?>" class="btn btn-primary">Detail</a></td>
                       </tr>
                       <?php endforeach ; ?>
                       </tbody>

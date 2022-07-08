@@ -36,50 +36,93 @@
 					<div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-6 col-12">
 							<div class="card card-statistic-1">
-								<div class="card-icon bg-primary">
-									<i class="far fa-user"></i>
-								</div>
-								<div class="card-wrap">
-									<div class="card-header">
-										<h4>Total Toko</h4>
-									</div>
-									<div class="card-body">
-										<?= $totalToko;?>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="card card-statistic-1">
 								<div class="card-icon bg-danger">
 									<i class="far fa-newspaper"></i>
 								</div>
 								<div class="card-wrap">
 									<div class="card-header">
-										<h4>Total Transaksi</h4>
+										<h4>Pesanan Masuk</h4>
 									</div>
+									<?php foreach($jml_pesanan_masuk as $item){ ?>
 									<div class="card-body">
-										<?= $totalTransaksi ?>
+										<?= $item->total_masuk; ?>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="card card-statistic-1">
-								<div class="card-icon bg-warning">
-									<i class="far fa-file"></i>
-								</div>
-								<div class="card-wrap">
-									<div class="card-header">
-										<h4>Total Pesanan</h4>
-									</div>
-									<div class="card-body">
-										-
-									</div>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
 
+						<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+							<div class="card card-statistic-1">
+								<div class="card-icon bg-primary">
+									<i class="far fa-newspaper"></i>
+								</div>
+								<div class="card-wrap">
+									<div class="card-header">
+										<h4>Pesanan Dibayar</h4>
+									</div>
+									<?php foreach($jml_pesanan_dibayar as $item){ ?>
+									<div class="card-body">
+										<?= $item->total_dibayar; ?>
+									</div>
+									<?php } ?>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+							<div class="card card-statistic-1">
+								<div class="card-icon bg-warning">
+									<i class="far fa-newspaper"></i>
+								</div>
+								<div class="card-wrap">
+									<div class="card-header">
+										<h4>Pesanan Diproses</h4>
+									</div>
+									<?php foreach($jml_pesanan_diproses as $item){ ?>
+									<div class="card-body">
+										<?= $item->total_diproses; ?>
+									</div>
+									<?php } ?>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+							<div class="card card-statistic-1">
+								<div class="card-icon bg-info">
+									<i class="far fa-newspaper"></i>
+								</div>
+								<div class="card-wrap">
+									<div class="card-header">
+										<h4>Pesanan Dikirim</h4>
+									</div>
+									<?php foreach($jml_pesanan_dikirim as $item){ ?>
+									<div class="card-body">
+										<?= $item->total_kirim; ?>
+									</div>
+									<?php } ?>
+								</div>
+							</div>
+						</div>
+					<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+							<div class="card card-statistic-1">
+								<div class="card-icon bg-success">
+									<i class="far fa-newspaper"></i>
+								</div>
+								<div class="card-wrap">
+									<div class="card-header">
+										<h4>Pesanan Selesai</h4>
+									</div>
+									<?php foreach($jml_pesanan_selesai as $item){ ?>
+									<div class="card-body">
+										<?= $item->total_selesai; ?>
+									</div>
+									<?php } ?>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -136,9 +136,16 @@ class Frontend extends CI_Controller {
 		$dataWhere = array('idToko'=>$id);
 		$data['toko'] = $this->Mfrontend->get_by_id('tbl_toko', $dataWhere)->row_object();
 		$data['kategori'] = $this->Mfrontend->get_all_data('tbl_kategori')->result();
-		$data['totalToko'] = $this->Mfrontend->hitungTotalToko($this->session->userdata('idKonsumen'));
-		$data['totalTransaksi'] = $this->Mfrontend->hitungTotalTransaksi($this->session->userdata('idKonsumen'));
-		$data['totalProduk'] = $this->Mfrontend->hitungTotalProduk($this->session->userdata('idKonsumen'));
+		$data['jml_pesanan_masuk'] = $this->Mfrontend->totalPesananMasuk($id)->result();
+		$data['jml_pesanan_dibayar'] = $this->Mfrontend->totalPesananDibayar($id)->result();
+		$data['jml_pesanan_diproses'] = $this->Mfrontend->totalPesananDiproses($id)->result();
+		$data['jml_pesanan_dikirim'] = $this->Mfrontend->totalPesananDikirim($id)->result();
+		$data['jml_pesanan_selesai'] = $this->Mfrontend->totalPesananSelesai($id)->result();
+
+		// $data['totalToko'] = $this->Mfrontend->hitungTotalToko($this->session->userdata('idKonsumen'));
+		// $data['totalTransaksi'] = $this->Mfrontend->hitungTotalTransaksi($this->session->userdata('idKonsumen'));
+		// $data['totalProduk'] = $this->Mfrontend->hitungTotalProduk($this->session->userdata('idKonsumen'));
+		
 		$this->template->load('layout_frontend', 'frontend/dashboard_toko', $data);
 
 	}
