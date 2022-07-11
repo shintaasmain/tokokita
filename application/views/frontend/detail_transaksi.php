@@ -155,7 +155,7 @@
 													class="btn btn-lg btn-dark mt-4">Dibatalkan</a>
 											</div>
 
-											<?php } else if($item -> statusOrder == 'Dibatalkan') { ?>
+											<?php } else if($item -> statusOrder == 'Sudah Bayar') { ?>
 											<!-- Foto Bukti Tf -->
 											<div class="mb-2 text-muted text-center">Click Bukti Bayar !</div>
 											<div class="chocolat-parent">
