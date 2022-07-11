@@ -268,6 +268,19 @@ class Mfrontend extends CI_Model{
         return $this->db->get();
     }
 
+    public function total_bayar($idOrder)
+    {
+        $where = $this->session->userdata('idKonsumen');
+        $this->db->select('SUM(tbl_detail_order.harga) as jml_bayar');
+        $this->db->from('tbl_order');
+        $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko');    
+		$this->db->join('tbl_detail_order','tbl_order.idOrder = tbl_detail_order.idOrder');  
+        $this->db->where('tbl_order.idOrder',$idOrder); 
+        $this->db->where('tbl_toko.idKonsumen', $where);
+        
+        return $this->db->get();
+    }
+
     public function getBuktiBayarTransaksi($idOrder)
     {
         $where = $this->session->userdata('idKonsumen');

@@ -536,6 +536,7 @@ class Frontend extends CI_Controller {
 			$data['bukti_bayar'] = $this->Mfrontend->getBuktiBayarTransaksi($id)->result();
 			$data['kategori'] = $this->Mfrontend->get_all_data('tbl_kategori')->result();
 			$data['toko'] = $this->Mfrontend->get_all_data('tbl_toko')->row_object();
+			$data['total_bayar'] = $this->Mfrontend->total_bayar($id)->result();
 			$this->template->load('layout_frontend', 'frontend/detail_transaksi', $data);
 	}
 

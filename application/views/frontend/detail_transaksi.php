@@ -117,6 +117,10 @@
 											</div>
 											<div class="mt-2 mb-2 text-muted">Click Produk image !</div>
 											<?php } ?>
+											<?php foreach($total_bayar as $item){ ?>
+												<br>
+											<h5>Total Pembayaran : Rp <?= $item->jml_bayar; ?></h5>
+											<?php } ?>
 										</div>
 
 										<?php foreach($bukti_bayar as $item){ ?>
@@ -125,7 +129,18 @@
 											<!-- status -->
 											<?php if ($item -> statusOrder == 'Belum Bayar'){ ?>
 											<div class="col-12">
+											
+											
 											<em class="text-danger">*Silahkan Upload Bukti Pembayaran dalam format : .png / .jpg / .jpeg</em>
+
+											<!-- info rekening -->
+											<div class="col-md-12 text-center">
+                            <h6 class="fw-bold mb-0 mt-3" style="font-size: 13px">Informasi Transfer Pembayaran</h6>
+                            <img class="img-fluid" height="35px" width="100px" src="<?= base_url() ?>assets/admin/assets/img/bank.png" alt="">
+                            <p class="mt-1" style="font-size: 13px">atas nama <b>Erina Dwi<br>No Rek : 00005555111</b></p> 
+                            
+                        </div>
+
 												<form method="POST" enctype="multipart/form-data" action="<?= base_url('frontend/uploadPembayaran/'.$item->idOrder); ?>" class="needs-validation mt-3" novalidate="">
 													<div class="form-group-upload">
 													<div class="custom-file">
@@ -242,8 +257,6 @@
 
 								</div>
 
-								<div class="card-footer text-right">
-								</div>
 							</div>
 						</div>
 					</div>
