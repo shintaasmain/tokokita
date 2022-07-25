@@ -20,8 +20,8 @@
 								<li class="nav-item"><a
 										href="<?php echo site_url('frontend/transaksi/'.$this->session->userdata('idKonsumen'));?>"
 										class="nav-link">Transaksi</a></li>
-								<li class="nav-item"><a href="<?php echo site_url('frontend/riwayat_transaksi');?>"
-										class="nav-link">Riwayat Transaksi</a></li>
+								<!-- <li class="nav-item"><a href="<?php echo site_url('frontend/riwayat_transaksi');?>"
+										class="nav-link">Riwayat Transaksi</a></li> -->
 								<li class="nav-item"><a
 										href="<?php echo site_url('frontend/toko/'.$this->session->userdata('idKonsumen'));?>"
 										class="nav-link">Toko</a></li>

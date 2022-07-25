@@ -255,7 +255,7 @@ class Mfrontend extends CI_Model{
 
     public function getDetailTransaksi($idOrder)
     {
-        $where = $this->session->userdata('idKonsumen');
+        //$where = $this->session->userdata('idKonsumen');
         $this->db->select('*');
         $this->db->from('tbl_order');
         $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko');    
@@ -263,32 +263,32 @@ class Mfrontend extends CI_Model{
 		$this->db->join('tbl_produk','tbl_detail_order.idProduk = tbl_produk.idProduk');  
 		$this->db->join('tbl_kategori','tbl_produk.idKat = tbl_kategori.idKat');  
         $this->db->where('tbl_order.idOrder',$idOrder); 
-        $this->db->where('tbl_toko.idKonsumen', $where);
+        //$this->db->where('tbl_toko.idKonsumen', $where);
         
         return $this->db->get();
     }
 
     public function total_bayar($idOrder)
     {
-        $where = $this->session->userdata('idKonsumen');
+        //$where = $this->session->userdata('idKonsumen');
         $this->db->select('SUM(tbl_detail_order.harga) as jml_bayar');
         $this->db->from('tbl_order');
         $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko');    
 		$this->db->join('tbl_detail_order','tbl_order.idOrder = tbl_detail_order.idOrder');  
         $this->db->where('tbl_order.idOrder',$idOrder); 
-        $this->db->where('tbl_toko.idKonsumen', $where);
+        //$this->db->where('tbl_toko.idKonsumen', $where);
         
         return $this->db->get();
     }
 
     public function getBuktiBayarTransaksi($idOrder)
     {
-        $where = $this->session->userdata('idKonsumen');
+        //$where = $this->session->userdata('idKonsumen');
         $this->db->select('*');
         $this->db->from('tbl_order');
         $this->db->join('tbl_toko','tbl_order.idToko = tbl_toko.idToko');
         $this->db->where('tbl_order.idOrder',$idOrder); 
-        $this->db->where('tbl_toko.idKonsumen', $where);
+        //$this->db->where('tbl_toko.idKonsumen', $where);
         
         return $this->db->get();
     }
@@ -320,12 +320,12 @@ class Mfrontend extends CI_Model{
 
     // Jumlah Pesanan Masuk
 	public function totalPesananMasuk($id) {
-		$where = $this->session->userdata('idKonsumen');
+		//$where = $this->session->userdata('idKonsumen');
 		$this->db->select('COUNT(idOrder) as total_masuk');
 		$this->db->from('tbl_order');
 		$this->db->where('statusOrder', 'Belum Bayar');
 		$this->db->where('idToko', $id);
-        $this->db->where('idKonsumen', $where);
+        //$this->db->where('idKonsumen', $where);
 
 		$hasil = $this->db->get();
 		return $hasil;
@@ -333,12 +333,12 @@ class Mfrontend extends CI_Model{
 
     // Jumlah Pesanan Dibayar
 	public function totalPesananDibayar($id) {
-		$where = $this->session->userdata('idKonsumen');
+		//$where = $this->session->userdata('idKonsumen');
 		$this->db->select('COUNT(idOrder) as total_dibayar');
 		$this->db->from('tbl_order');
 		$this->db->where('statusOrder', 'Sudah Bayar');
 		$this->db->where('idToko', $id);
-        $this->db->where('idKonsumen', $where);
+        //$this->db->where('idKonsumen', $where);
 
 		$hasil = $this->db->get();
 		return $hasil;
@@ -346,12 +346,12 @@ class Mfrontend extends CI_Model{
 
     // Jumlah Pesanan Diproses
 	public function totalPesananDiproses($id) {
-		$where = $this->session->userdata('idKonsumen');
+		//$where = $this->session->userdata('idKonsumen');
 		$this->db->select('COUNT(idOrder) as total_diproses');
 		$this->db->from('tbl_order');
 		$this->db->where('statusOrder', 'Barang Diproses');
 		$this->db->where('idToko', $id);
-        $this->db->where('idKonsumen', $where);
+        //$this->db->where('idKonsumen', $where);
 
 		$hasil = $this->db->get();
 		return $hasil;
@@ -359,12 +359,12 @@ class Mfrontend extends CI_Model{
 
     // Jumlah Pesanan Dikirim
 	public function totalPesananDikirim($id) {
-		$where = $this->session->userdata('idKonsumen');
+		//$where = $this->session->userdata('idKonsumen');
 		$this->db->select('COUNT(idOrder) as total_kirim');
 		$this->db->from('tbl_order');
 		$this->db->where('statusOrder', 'Dikirim');
 		$this->db->where('idToko', $id);
-        $this->db->where('idKonsumen', $where);
+        //$this->db->where('idKonsumen', $where);
 
 		$hasil = $this->db->get();
 		return $hasil;
@@ -372,12 +372,12 @@ class Mfrontend extends CI_Model{
 
     // Jumlah Pesanan Selesai
 	public function totalPesananSelesai($id) {
-		$where = $this->session->userdata('idKonsumen');
+		//$where = $this->session->userdata('idKonsumen');
 		$this->db->select('COUNT(idOrder) as total_selesai');
 		$this->db->from('tbl_order');
 		$this->db->where('statusOrder', 'Selesai');
 		$this->db->where('idToko', $id);
-        $this->db->where('idKonsumen', $where);
+        //$this->db->where('idKonsumen', $where);
 
 		$hasil = $this->db->get();
 		return $hasil;
