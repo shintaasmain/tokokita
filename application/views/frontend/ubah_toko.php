@@ -74,7 +74,7 @@
                     </div>
                     </div>
                     <div class="form-group row mb-2">
-                      <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Foto Produk</label>
+                      <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Logo Toko</label>
                       <di class="col-9">
                       <div class="form-group">
                         <input type="file" class="form-control" id="image" name="logo" placeholder="Gambar">
